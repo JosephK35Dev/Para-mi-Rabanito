@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+
+    <title>Para mi rabanito</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Parisienne&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Cormorant Garamond', 'serif'],
+                        script: ['Parisienne', 'cursive']
+                    },
+
+                    colors: {
+                        rose: {
+                            50: '#fff7f8',
+                            100: '#ffecef',
+                            200: '#ffd5dc',
+                            300: '#ffb5c2',
+                            400: '#fb8fa1',
+                            500: '#f36f85',
+                            600: '#df526b',
+                            700: '#bd3d54',
+                            800: '#9d3549',
+                            900: '#83333f'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* =====================================================
+           GENERAL
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: #120d10;
+            color: #3d2930;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: #f9a8b8;
+            color: #351c23;
+        }
+
+
+        /* =====================================================
+           INTRO
+        ===================================================== */
+
+        #intro {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                radial-gradient(circle at 50% 30%,
+                    rgba(255, 194, 207, 0.14),
+                    transparent 35%),
+                linear-gradient(145deg,
+                    #170e12,
+                    #261319 55%,
+                    #100a0d);
+
+            transition:
+                opacity 1.2s ease,
+                visibility 1.2s ease;
+        }
+
+        #intro.hidden-intro {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .intro-content {
+            width: min(90%, 500px);
+            text-align: center;
+        }
+
+        .intro-small {
+            color: rgba(255, 255, 255, .62);
+            font-size: .75rem;
+            letter-spacing: .35em;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .intro-title {
+            color: white;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 12vw, 5.5rem);
+            line-height: .95;
+            font-weight: 500;
+            margin-bottom: 18px;
+        }
+
+        .intro-subtitle {
+            color: rgba(255, 255, 255, .7);
+            font-size: .9rem;
+            line-height: 1.8;
+            max-width: 350px;
+            margin: 0 auto 40px;
+        }
+
+
+        /* =====================================================
+           ENVELOPE
+        ===================================================== */
+
+        .envelope-wrapper {
+            position: relative;
+            width: 250px;
+            height: 175px;
+            margin: 0 auto 40px;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .envelope {
+            position: absolute;
+            inset: 0;
+            background: #f4dfe2;
+            border-radius: 5px;
+            box-shadow:
+                0 30px 60px rgba(0, 0, 0, .35),
+                0 10px 25px rgba(0, 0, 0, .2);
+            overflow: hidden;
+        }
+
+        .envelope::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                    transparent 50%,
+                    rgba(190, 110, 125, .18) 50%);
+            clip-path: polygon(0 0, 100% 100%, 0 100%);
+        }
+
+        .envelope::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(225deg,
+                    transparent 50%,
+                    rgba(190, 110, 125, .18) 50%);
+            clip-path: polygon(100% 0, 100% 100%, 0 0);
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f9e7e9;
+            clip-path: polygon(0 0, 50% 57%, 100% 0);
+            transform-origin: top;
+            transition: transform 1s cubic-bezier(.4, 0, .2, 1);
+            z-index: 5;
+        }
+
+        .letter-inside {
+            position: absolute;
+            width: 82%;
+            height: 85%;
+            background: #fffaf7;
+            left: 9%;
+            top: 8%;
+            border-radius: 3px;
+            z-index: 2;
+            transition: transform 1s cubic-bezier(.4, 0, .2, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+        }
+
+        .letter-inside::before {
+            content: "♥";
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 25px;
+            color: #d95c74;
+            opacity: .7;
+        }
+
+        .envelope-wrapper:hover .letter-inside {
+            transform: translateY(-8px);
+        }
+
+        .envelope-wrapper.opening .envelope-flap {
+            transform: rotateX(180deg);
+        }
+
+        .envelope-wrapper.opening .letter-inside {
+            transform: translateY(-90px);
+        }
+
+
+        /* =====================================================
+           BUTTON
+        ===================================================== */
+
+        .open-button {
+            border: 1px solid rgba(255, 255, 255, .25);
+            color: white;
+            background: rgba(255, 255, 255, .06);
+            backdrop-filter: blur(10px);
+
+            padding: 14px 28px;
+            border-radius: 999px;
+
+            font-size: .8rem;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+
+            transition:
+                background .3s ease,
+                transform .3s ease,
+                border-color .3s ease;
+        }
+
+        .open-button:hover {
+            background: rgba(255, 255, 255, .13);
+            border-color: rgba(255, 255, 255, .45);
+            transform: translateY(-2px);
+        }
+
+
+        /* =====================================================
+           FLOATING PARTICLES
+        ===================================================== */
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 220, 225, .6);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatParticle linear infinite;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(110vh);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: .8;
+            }
+
+            80% {
+                opacity: .5;
+            }
+
+            100% {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        #main-content {
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+
+        #main-content.visible {
+            opacity: 1;
+        }
+
+        .section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 20px;
+        }
+
+
+        /* =====================================================
+           LETTER SECTION
+        ===================================================== */
+
+        #letter-section {
+            background:
+                radial-gradient(circle at 20% 20%,
+                    rgba(255, 198, 210, .35),
+                    transparent 30%),
+                radial-gradient(circle at 80% 80%,
+                    rgba(255, 220, 225, .45),
+                    transparent 30%),
+                #fff8f5;
+        }
+
+        .paper {
+            width: min(100%, 760px);
+            background: rgba(255, 255, 255, .75);
+            border: 1px solid rgba(180, 110, 125, .14);
+
+            box-shadow:
+                0 30px 80px rgba(110, 60, 70, .12),
+                0 5px 20px rgba(110, 60, 70, .06);
+
+            padding:
+                clamp(40px, 8vw, 85px) clamp(25px, 8vw, 75px);
+
+            position: relative;
+        }
+
+        .paper::before {
+            content: "";
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            right: 25px;
+            bottom: 25px;
+            border: 1px solid rgba(180, 110, 125, .10);
+            pointer-events: none;
+        }
+
+        .letter-decoration {
+            text-align: center;
+            color: #df7288;
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .letter-title {
+            font-family: 'Parisienne', cursive;
+            color: #9c4b5c;
+            font-size: clamp(2.8rem, 10vw, 4.5rem);
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .letter-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.2rem, 3vw, 1.45rem);
+            line-height: 1.8;
+            color: #4b343b;
+        }
+
+        .letter-text p {
+            margin-bottom: 30px;
+        }
+
+        .signature {
+            margin-top: 55px;
+            text-align: right;
+            font-family: 'Parisienne', cursive;
+            color: #9c4b5c;
+            font-size: 2.3rem;
+        }
+
+
+        /* =====================================================
+           SCROLL REVEAL
+        ===================================================== */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition:
+                opacity 1s ease,
+                transform 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* =====================================================
+           THINGS I LIKE
+        ===================================================== */
+
+        #qualities-section {
+            background:
+                radial-gradient(circle at 50% 0%,
+                    rgba(244, 163, 181, .22),
+                    transparent 40%),
+                #f7e9eb;
+        }
+
+        .section-heading {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 60px;
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: .3em;
+            font-size: .7rem;
+            color: #b45b6c;
+            margin-bottom: 18px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            font-size: clamp(2.8rem, 9vw, 4.5rem);
+            line-height: 1;
+            color: #542f39;
+        }
+
+        .section-description {
+            margin-top: 20px;
+            color: #785963;
+            line-height: 1.8;
+            font-size: .95rem;
+        }
+
+        .quality-grid {
+            width: min(100%, 950px);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .quality-card {
+            position: relative;
+            min-height: 310px;
+            padding: 35px 28px;
+
+            border-radius: 4px;
+
+            background:
+                linear-gradient(145deg,
+                    rgba(255, 255, 255, .85),
+                    rgba(255, 245, 246, .65));
+
+            border: 1px solid rgba(160, 90, 105, .12);
+
+            box-shadow: 0 15px 40px rgba(110, 60, 70, .08);
+
+            cursor: pointer;
+
+            transition:
+                transform .45s cubic-bezier(.2, .8, .2, 1),
+                box-shadow .45s ease;
+        }
+
+        .quality-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(110, 60, 70, .13);
+        }
+
+        .quality-icon {
+            width: 52px;
+            height: 52px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #f9dce2;
+            color: #ae4e64;
+
+            font-size: 22px;
+
+            margin-bottom: 30px;
+        }
+
+        .quality-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: #613742;
+            margin-bottom: 15px;
+        }
+
+        .quality-text {
+            font-size: .9rem;
+            line-height: 1.8;
+            color: #775963;
+        }
+
+        .click-hint {
+            position: absolute;
+            bottom: 22px;
+            right: 25px;
+            font-size: .65rem;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: #b97987;
+        }
+
+
+        /* =====================================================
+           FINAL EMOTIONAL SECTION
+        ===================================================== */
+
+        #final-message-section {
+            background:
+                radial-gradient(circle at 50% 40%,
+                    rgba(235, 143, 163, .15),
+                    transparent 45%),
+                linear-gradient(145deg,
+                    #211216,
+                    #301820,
+                    #150b0f);
+
+            color: white;
+            text-align: center;
+        }
+
+        .final-container {
+            width: min(100%, 760px);
+        }
+
+        .final-small {
+            color: rgba(255, 215, 222, .65);
+            font-size: .7rem;
+            letter-spacing: .35em;
+            text-transform: uppercase;
+            margin-bottom: 35px;
+        }
+
+        .final-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 11vw, 5.5rem);
+            font-weight: 400;
+            line-height: 1;
+            margin-bottom: 45px;
+        }
+
+        .final-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.3rem, 4vw, 1.7rem);
+            line-height: 1.8;
+            color: rgba(255, 240, 243, .8);
+        }
+
+        .final-heart {
+            margin-top: 55px;
+            color: #f29bad;
+            font-size: 30px;
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            10% {
+                transform: scale(1.12);
+            }
+
+            20% {
+                transform: scale(1);
+            }
+
+            30% {
+                transform: scale(1.08);
+            }
+        }
+
+
+        /* =====================================================
+           SURPRISE SECTION
+        ===================================================== */
+
+        #surprise-section {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(circle at 50% 50%,
+                    rgba(255, 195, 207, .5),
+                    transparent 35%),
+                #fff8f7;
+
+            text-align: center;
+        }
+
+        .surprise-container {
+            width: min(100%, 700px);
+        }
+
+        .surprise-before {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            color: #69404a;
+            margin-bottom: 35px;
+        }
+
+        .surprise-button {
+            position: relative;
+            overflow: hidden;
+
+            padding: 18px 38px;
+
+            border: none;
+            border-radius: 999px;
+
+            background: #a94e62;
+            color: white;
+
+            font-size: .75rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+
+            box-shadow:
+                0 15px 35px rgba(169, 78, 98, .25);
+
+            cursor: pointer;
+
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease;
+        }
+
+        .surprise-button:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                0 20px 45px rgba(169, 78, 98, .35);
+        }
+
+        .surprise-button::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, .25),
+                    transparent);
+
+            transform: skewX(-20deg);
+            transition: left .7s ease;
+        }
+
+        .surprise-button:hover::after {
+            left: 140%;
+        }
+
+
+        /* =====================================================
+           REVEALED MESSAGE
+        ===================================================== */
+
+        #revealed-message {
+            display: none;
+            margin-top: 65px;
+            animation: revealMessage 1.5s ease forwards;
+        }
+
+        #revealed-message.show {
+            display: block;
+        }
+
+        @keyframes revealMessage {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(.96);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .revealed-intro {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: #86606a;
+            margin-bottom: 20px;
+        }
+
+        .revealed-title {
+            font-family: 'Parisienne', cursive;
+            color: #a94e62;
+            font-size: clamp(3.8rem, 14vw, 7rem);
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .revealed-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: #70444f;
+            margin-bottom: 30px;
+        }
+
+        .revealed-signature {
+            font-family: 'Parisienne', cursive;
+            font-size: 2.2rem;
+            color: #a94e62;
+        }
+
+
+        /* =====================================================
+           FLOATING HEARTS
+        ===================================================== */
+
+        .heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+
+            font-size: 20px;
+
+            animation:
+                heartFloat 4s ease-out forwards;
+        }
+
+        @keyframes heartFloat {
+            0% {
+                opacity: 1;
+                transform:
+                    translateY(0) scale(.5) rotate(0deg);
+            }
+
+            100% {
+                opacity: 0;
+                transform:
+                    translateY(-100vh) scale(1.3) rotate(25deg);
+            }
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            padding: 35px 20px;
+            text-align: center;
+            background: #120b0f;
+            color: rgba(255, 255, 255, .45);
+            font-size: .7rem;
+            letter-spacing: .1em;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 800px) {
+
+            .quality-grid {
+                grid-template-columns: 1fr;
+                width: min(100%, 500px);
+            }
+
+            .quality-card {
+                min-height: auto;
+            }
+
+            .paper::before {
+                top: 15px;
+                left: 15px;
+                right: 15px;
+                bottom: 15px;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+
+            .envelope-wrapper {
+                width: 220px;
+                height: 155px;
+            }
+
+            .letter-text {
+                font-size: 1.15rem;
+            }
+
+            .paper {
+                padding: 45px 25px;
+            }
+
+            .quality-card {
+                padding: 30px 24px;
+            }
+
+        }
+
+        /* =====================================================
+   FOTO FINAL
+===================================================== */
+
+        .photo-frame {
+            width: min(88%, 360px);
+            margin: 45px auto;
+
+            padding: 12px 12px 22px;
+
+            background: #fffaf7;
+
+            box-shadow:
+                0 20px 45px rgba(80, 35, 45, .18);
+
+            transform: rotate(-2deg);
+
+            transition:
+                transform .5s ease,
+                box-shadow .5s ease;
+        }
+
+        .photo-frame:hover {
+            transform:
+                rotate(0deg) translateY(-5px);
+
+            box-shadow:
+                0 25px 55px rgba(80, 35, 45, .25);
+        }
+
+        .couple-photo {
+            display: block;
+
+            width: 100%;
+            aspect-ratio: 4 / 5;
+
+            object-fit: cover;
+
+            border-radius: 1px;
+        }
+
+        .photo-caption {
+            margin: 14px 0 0;
+
+            color: #70444f;
+
+            font-family:
+                'Parisienne',
+                cursive;
+
+            font-size: 1.8rem;
+        }
+    </style>
+</head>
+
+<audio id="backgroundMusic" loop>
+    <source src="cancion.mp3" type="audio/mpeg">
+</audio>
+
+<body>
+
+
+    <!-- =========================================================
+     INTRO / SOBRE
+========================================================= -->
+
+    <div id="intro">
+
+        <div id="particles"></div>
+
+        <div class="intro-content">
+
+            <div class="intro-small">
+                Una pequeña sorpresa
+            </div>
+
+            <h1 class="intro-title">
+                Para ti
+                <span class="text-rose-400">♥</span>
+            </h1>
+
+            <p class="intro-subtitle">
+                Hay cosas que a veces cuesta decir en persona...
+                así que decidí escribirlas de una manera un poquito diferente.
+            </p>
+
+
+            <div id="envelopeWrapper" class="envelope-wrapper" aria-label="Abrir carta">
+
+                <div class="letter-inside"></div>
+
+                <div class="envelope"></div>
+
+                <div class="envelope-flap"></div>
+
+            </div>
+
+
+            <button id="openLetter" class="open-button">
+                Abrir mi carta
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+
+    <main id="main-content">
+
+
+        <!-- =========================================================
+     CARTA
+========================================================= -->
+
+        <section id="letter-section" class="section">
+
+            <article class="paper">
+
+                <div class="letter-decoration reveal">
+                    ♥ &nbsp; ✦ &nbsp; ♥
+                </div>
+
+
+                <h2 class="letter-title reveal">
+                    Para mi rabanito
+                </h2>
+
+
+                <div class="letter-text">
+
+
+                    <p class="reveal">
+                        Hace mucho tiempo que no te escribo una carta,
+                        y en estos momentos la verdad es que quiero expresar
+                        todo lo que siento por ti; y me gustaría hacerlo a mi manera,
+                        que es programando jajaja.
+                    </p>
+
+
+                    <p class="reveal">
+                        Estos días, a pesar de que hablamos y hemos vuelto,
+                        hemos estado muy ocupados cada uno en lo suyo,
+                        y eso me ha dado mucho tiempo para pensar en ti y en nosotros.
+                    </p>
+
+
+                    <p class="reveal">
+                        Cuando tengo tiempo para pensarnos, veo las cosas de una
+                        manera muy diferente, y me doy cuenta de las miles de razones
+                        por las que estoy enamorado de ti: todas tus cualidades,
+                        tus puntos fuertes y todo aquello que me hace querer
+                        escogerte una y mil veces.
+                    </p>
+
+
+                    <p class="reveal">
+                        Eres una mujer increíble, y espero que a mi lado siempre
+                        puedas sentirte valorada.
+                    </p>
+
+
+                    <p class="reveal">
+                        La verdad es que desde este tiempo que pasamos juntos,
+                        en el que volvimos después de la ruptura, mi forma de ver
+                        las cosas cambió mucho.
+                    </p>
+
+
+                    <p class="reveal">
+                        He tratado de hacer lo mejor para que sientas que soy
+                        el hombre que merece estar a tu lado y no ningún otro;
+                        que, a pesar de que otros tengan más tiempo, dinero,
+                        físico o cualquier otra cualidad, tú me sigas escogiendo
+                        a mí sin duda.
+                    </p>
+
+
+                    <p class="reveal">
+                        Así como yo te escojo a ti sobre cualquier mujer sobre
+                        la tierra, porque tengo muy claro lo que vales.
+                    </p>
+
+
+                    <p class="reveal">
+                        Y por eso, a pesar de que la cago y no siempre te demuestro
+                        todo mi interés, trato de remediar mis errores y de que
+                        te des cuenta de que yo lo doy todo por ti.
+                    </p>
+
+
+                    <p class="reveal">
+                        Entiendo que hay veces en las que sientes que no te pongo
+                        como prioridad, pero no es así.
+                    </p>
+
+
+                    <p class="reveal">
+                        Muchas de las cosas que hago son pensando en el futuro,
+                        tratando de construir algo bueno para que no tengas que
+                        preocuparte por lo económico y para poder cumplir todos
+                        tus deseos y fantasías de viajar y tener muchas cosas.
+                    </p>
+
+
+                    <p class="reveal">
+                        Porque ese es mi objetivo: vivir una vida muy bonita
+                        a tu lado, donde ambos seamos felices.
+                    </p>
+
+
+                    <p class="reveal">
+                        Y créeme que el gran hecho de que te tengas que ir
+                        me ha dolido mucho.
+                    </p>
+
+
+                    <p class="reveal">
+                        Me hace arrepentirme demasiado de no haber abierto los ojos
+                        mucho antes, para que no tuvieras que tomar la decisión de irte.
+                    </p>
+
+
+                    <p class="reveal">
+                        Pero ya solo me queda aceptar tu decisión, desearte lo mejor
+                        y apoyarte en lo que pueda, a pesar de que todos mis sueños
+                        y metas que tenía contigo a corto plazo se tengan que
+                        ver obstaculizadas.
+                    </p>
+
+
+                    <p class="reveal">
+                        Al menos espero que todo esto sea para bien, y que si en verdad
+                        estamos destinados a estar los dos, así va a ser.
+                    </p>
+
+
+                    <p class="reveal">
+                        Ya que no me imagino siendo feliz con otra persona que no seas tú.
+                        No quiero compartir nuevas experiencias con alguien que no sea
+                        mi cuchurrumin.
+                    </p>
+
+
+                    <p class="reveal">
+                        Yo quiero vivir todo lo lindo y lo malo contigo, apoyarnos
+                        mutuamente, superarnos y crecer juntos.
+                    </p>
+
+
+                    <p class="reveal">
+                        Sé que hace mucho no te decía tantas cosas, y precisamente
+                        por eso siento que me hacía falta decirte todo esto.
+                    </p>
+
+
+                    <p class="reveal">
+                        Y aún me quedan muchas más cosas por decirte,
+                        pero espero seguirlo haciendo poco a poco.
+                    </p>
+
+
+                    <p class="reveal">
+                        Te quiero mucho, mi rabanito.
+                    </p>
+
+
+                    <p class="reveal">
+                        Cuídate. Dios te bendiga.
+                    </p>
+
+
+                    <div class="signature reveal">
+
+                        Te quiere tu compa pesito.
+
+                        <br>
+
+                        Chauuu 💓
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+
+        <!-- =========================================================
+     COSAS QUE ME GUSTAN DE TI
+========================================================= -->
+
+        <section id="qualities-section" class="section">
+
+            <div class="w-full">
+
+                <div class="section-heading reveal">
+
+                    <div class="eyebrow">
+                        Podría seguir hablando de ti...
+                    </div>
+
+                    <h2 class="section-title">
+                        Pero hay tres cosas
+                        que quiero destacar.
+                    </h2>
+
+                    <p class="section-description">
+                        Porque después de todo lo que hemos vivido,
+                        hay cosas de ti que siguen haciéndome escogerte.
+                    </p>
+
+                </div>
+
+
+                <div class="quality-grid mx-auto">
+
+
+                    <!-- TARJETA 1 -->
+
+                    <article class="quality-card reveal">
+
+                        <div class="quality-icon">
+                            ✦
+                        </div>
+
+                        <h3 class="quality-title">
+                            Tu forma de ser
+                        </h3>
+
+                        <p class="quality-text">
+                            Eres una mujer muy valiente, muy viva e inteligente.
+                            Me gusta que sé que por ti misma nunca te vas a dar
+                            mala vida y que tienes la capacidad de salir adelante.
+                            Sé que tienes un muy buen futuro, y una de las cosas
+                            que más admiro de ti es precisamente saber que eres
+                            capaz de construirlo por ti misma.
+                        </p>
+
+                        <span class="click-hint">
+                            ♥
+                        </span>
+
+                    </article>
+
+
+
+                    <!-- TARJETA 2 -->
+
+                    <article class="quality-card reveal">
+
+                        <div class="quality-icon">
+                            ♡
+                        </div>
+
+                        <h3 class="quality-title">
+                            Tu belleza
+                        </h3>
+
+                        <p class="quality-text">
+                            Ante mis ojos eres la mujer más hermosa de todas.
+                            Pero más allá de simplemente verte bonita, eres la
+                            persona que me genera esos sentimientos y esa atracción
+                            que no siento por cualquier otra persona.
+                            Para mí, eres tú.
+                        </p>
+
+                        <span class="click-hint">
+                            ♥
+                        </span>
+
+                    </article>
+
+
+
+                    <!-- TARJETA 3 -->
+
+                    <article class="quality-card reveal">
+
+                        <div class="quality-icon">
+                            ∞
+                        </div>
+
+                        <h3 class="quality-title">
+                            Cómo me haces sentir
+                        </h3>
+
+                        <p class="quality-text">
+                            Siento que compaginamos muy bien. A pesar de que no
+                            siempre estamos de acuerdo en todo, nuestras
+                            personalidades se complementan de una manera muy bonita.
+                            Al final, hemos crecido juntos y hemos compartido
+                            tantas cosas que eso terminó marcándonos a los dos.
+                            Y creo que una de las cosas más bonitas de nosotros
+                            es precisamente eso: que hemos aprendido y crecido juntos.
+                        </p>
+
+                        <span class="click-hint">
+                            ♥
+                        </span>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================================
+     MENSAJE EMOCIONAL
+========================================================= -->
+
+        <section id="final-message-section" class="section">
+
+            <div class="final-container">
+
+
+                <div class="final-small reveal">
+                    Antes de terminar...
+                </div>
+
+
+                <h2 class="final-title reveal">
+                    Hay algo más
+                    que quiero que sepas.
+                </h2>
+
+
+                <div class="final-text">
+
+                    <p class="reveal">
+                        Quiero que sepas que eres una persona demasiado importante
+                        para mí.
+                    </p>
+
+                    <p class="reveal mt-8">
+                        Eres la mujer con la que quiero compartir mi vida,
+                        y espero poder tenerte a mi lado durante muchos años,
+                        incluso cuando las cosas no sean fáciles.
+                    </p>
+
+                    <p class="reveal mt-8">
+                        Sé que van a existir adversidades, momentos complicados
+                        y cosas que no siempre saldrán como queremos.
+                    </p>
+
+                    <p class="reveal mt-8">
+                        Pero si algo tengo claro es que quiero hacer todo lo que
+                        esté a mi alcance para construir esa vida bonita que tantas
+                        veces he imaginado contigo.
+                    </p>
+
+                    <p class="reveal mt-8">
+                        Porque al final, entre todas las cosas que puedo querer
+                        conseguir en mi vida, una de las que más deseo es poder
+                        compartirlas contigo.
+                    </p>
+
+                </div>
+
+
+                <div class="final-heart reveal">
+                    ♥
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================================
+     SORPRESA
+========================================================= -->
+
+        <section id="surprise-section" class="section">
+
+            <div class="surprise-container">
+
+                <div class="surprise-before reveal">
+                    Espera...
+                    <br>
+                    todavía tengo algo más que decirte.
+                </div>
+
+                <button id="surpriseButton" class="surprise-button reveal">
+                    Haz clic aquí ❤️
+                </button>
+
+                <div id="revealed-message">
+
+                    <p class="revealed-intro">
+                        Si después de todo lo que te dije
+                        tuviera que resumirlo en una sola cosa...
+                    </p>
+
+                    <h2 class="revealed-title">
+                        Te escogería a ti.
+                    </h2>
+
+                    <!-- FOTO DE USTEDES -->
+
+                    <div class="photo-frame">
+
+                        <img src="./nuestra-foto.jpeg" alt="Un recuerdo juntos" class="couple-photo">
+
+                        <p class="photo-caption">
+                            Tú y yo ❤️
+                        </p>
+
+                    </div>
+
+                    <p class="revealed-subtitle">
+                        Siempre.
+                    </p>
+
+                    <div class="revealed-signature">
+                        Tu compa pesito ❤️
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================================
+     FOOTER
+========================================================= -->
+
+        <footer>
+
+            Hecho a mi manera. ❤️
+
+        </footer>
+
+
+    </main>
+
+
+
+    <!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+    <script>
+
+        /* =====================================================
+           ELEMENTOS
+        ===================================================== */
+
+        const intro = document.getElementById('intro');
+
+        const mainContent =
+            document.getElementById('main-content');
+
+        const envelopeWrapper =
+            document.getElementById('envelopeWrapper');
+
+        const openLetter =
+            document.getElementById('openLetter');
+
+        const surpriseButton =
+            document.getElementById('surpriseButton');
+
+        const revealedMessage =
+            document.getElementById('revealed-message');
+
+
+        /* =====================================================
+           PARTICULAS DEL INICIO
+        ===================================================== */
+
+        function createParticles() {
+
+            const container =
+                document.getElementById('particles');
+
+            for (let i = 0; i < 25; i++) {
+
+                const particle =
+                    document.createElement('div');
+
+                particle.classList.add('particle');
+
+                particle.style.left =
+                    Math.random() * 100 + '%';
+
+                particle.style.animationDuration =
+                    (7 + Math.random() * 10) + 's';
+
+                particle.style.animationDelay =
+                    Math.random() * 8 + 's';
+
+                const size =
+                    2 + Math.random() * 3;
+
+                particle.style.width =
+                    size + 'px';
+
+                particle.style.height =
+                    size + 'px';
+
+                container.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+
+        /* =====================================================
+           ABRIR CARTA
+        ===================================================== */
+
+        const backgroundMusic = document.getElementById('backgroundMusic');
+
+        function startLetter() {
+
+            envelopeWrapper.classList.add('opening');
+
+            openLetter.style.opacity = '0';
+            openLetter.style.pointerEvents = 'none';
+
+            // Iniciar música después de la interacción de la usuaria
+            backgroundMusic.volume = 0.35;
+            backgroundMusic.play().catch(error => {
+                console.log("No se pudo iniciar la música:", error);
+            });
+
+            setTimeout(() => {
+
+                intro.classList.add('hidden-intro');
+
+                mainContent.classList.add('visible');
+
+                document.body.style.overflow = 'auto';
+
+                setTimeout(() => {
+
+                    document
+                        .getElementById('letter-section')
+                        .scrollIntoView({
+                            behavior: 'smooth'
+                        });
+
+                }, 500);
+
+            }, 1000);
+        }
+
+
+        envelopeWrapper.addEventListener(
+            'click',
+            startLetter
+        );
+
+        openLetter.addEventListener(
+            'click',
+            startLetter
+        );
+
+
+        /* =====================================================
+           SCROLL REVEAL
+        ===================================================== */
+
+        const revealElements =
+            document.querySelectorAll('.reveal');
+
+
+        const observer =
+            new IntersectionObserver(
+                (entries) => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add('active');
+
+                            observer.unobserve(entry.target);
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        revealElements.forEach(element => {
+
+            observer.observe(element);
+
+        });
+
+
+        /* =====================================================
+           CORAZONES
+        ===================================================== */
+
+        function createHeart(
+            x = Math.random() * window.innerWidth
+        ) {
+
+            const heart =
+                document.createElement('div');
+
+            heart.classList.add('heart');
+
+            const hearts = [
+                '♥',
+                '♡',
+                '❤',
+                '✦'
+            ];
+
+            heart.textContent =
+                hearts[Math.floor(Math.random() * hearts.length)];
+
+            heart.style.left =
+                x + 'px';
+
+            heart.style.bottom =
+                '-30px';
+
+            heart.style.fontSize =
+                (15 + Math.random() * 25) + 'px';
+
+            heart.style.animationDuration =
+                (3 + Math.random() * 2) + 's';
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+
+                heart.remove();
+
+            }, 5000);
+        }
+
+
+        /* =====================================================
+           SORPRESA FINAL
+        ===================================================== */
+
+        let surpriseOpened = false;
+
+
+        surpriseButton.addEventListener(
+            'click',
+            () => {
+
+                if (surpriseOpened) {
+                    return;
+                }
+
+                surpriseOpened = true;
+
+                surpriseButton.style.display =
+                    'none';
+
+                revealedMessage.classList.add('show');
+
+
+                /*
+                 * Crear una lluvia de corazones.
+                 */
+
+                for (let i = 0; i < 35; i++) {
+
+                    setTimeout(() => {
+
+                        createHeart(
+                            Math.random() *
+                            window.innerWidth
+                        );
+
+                    }, i * 90);
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           PREVENIR SCROLL DURANTE INTRO
+        ===================================================== */
+
+        document.body.style.overflow = 'hidden';
+
+
+        /* =====================================================
+           EFECTO SUTIL EN TARJETAS
+        ===================================================== */
+
+        const cards =
+            document.querySelectorAll('.quality-card');
+
+
+        cards.forEach(card => {
+
+            card.addEventListener(
+                'mousemove',
+                (event) => {
+
+                    const rect =
+                        card.getBoundingClientRect();
+
+                    const x =
+                        event.clientX - rect.left;
+
+                    const y =
+                        event.clientY - rect.top;
+
+                    const centerX =
+                        rect.width / 2;
+
+                    const centerY =
+                        rect.height / 2;
+
+                    const rotateX =
+                        ((y - centerY) / centerY) * -2;
+
+                    const rotateY =
+                        ((x - centerX) / centerX) * 2;
+
+                    card.style.transform =
+                        `perspective(700px)
+                     rotateX(${rotateX}deg)
+                     rotateY(${rotateY}deg)
+                     translateY(-5px)`;
+
+                }
+            );
+
+
+            card.addEventListener(
+                'mouseleave',
+                () => {
+
+                    card.style.transform =
+                        '';
+
+                }
+            );
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>
