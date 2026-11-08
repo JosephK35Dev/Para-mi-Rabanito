@@ -658,7 +658,6 @@
                 transform .3s ease,
                 box-shadow .3s ease;
         }
-
         .surprise-button:hover {
             transform: translateY(-4px);
             box-shadow:
@@ -883,6 +882,46 @@
 
             font-size: 1.8rem;
         }
+
+        /* SEGUNDA CARTA · EXPERIENCIA EDITORIAL */
+        .farewell-transition{margin:72px auto 0;padding:42px 20px 0;max-width:580px;border-top:1px solid rgba(120,80,88,.16);animation:farewellArrive .9s .3s both}
+        .farewell-transition p{color:#785963;font:400 clamp(1.25rem,4vw,1.65rem)/1.5 'Cormorant Garamond',serif;margin:0 0 24px}
+        .farewell-trigger{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:54px;padding:0 25px;border:1px solid rgba(169,78,98,.45);border-radius:999px;color:#693743;background:rgba(255,255,255,.45);font:500 .76rem 'Inter',sans-serif;letter-spacing:.08em;cursor:pointer;transition:background .3s,color .3s,transform .3s,box-shadow .3s}
+        .farewell-trigger span{color:#a76772;font-size:1rem}.farewell-trigger:hover{color:#fffaf8;background:#71424d;transform:translateY(-2px);box-shadow:0 12px 28px rgba(65,34,43,.18)}.farewell-trigger:hover span{color:#f0d7ce}
+        @keyframes farewellArrive{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+        .farewell-experience{--ink:#f2ebe4;--gold:#d7b991;position:fixed;inset:0;z-index:2000;overflow-y:auto;overscroll-behavior:contain;color:var(--ink);background:radial-gradient(ellipse at 16% 20%,rgba(157,91,72,.23),transparent 42%),radial-gradient(ellipse at 84% 78%,rgba(171,126,76,.19),transparent 40%),radial-gradient(ellipse at 54% 110%,rgba(100,65,81,.28),transparent 48%),linear-gradient(140deg,#171519,#21191a 48%,#171716);opacity:0;visibility:hidden;pointer-events:none;transform:translateY(14px);transition:opacity .5s ease,transform .6s cubic-bezier(.2,.7,.2,1),visibility .5s}
+        .farewell-experience::before{z-index:0;content:'';position:fixed;inset:-18%;pointer-events:none;opacity:.72;background:radial-gradient(ellipse at 22% 28%,rgba(198,132,96,.18),transparent 34%),radial-gradient(ellipse at 75% 62%,rgba(192,145,91,.15),transparent 31%),radial-gradient(ellipse at 55% 88%,rgba(134,90,105,.14),transparent 35%);background-size:145% 145%;animation:ambientDrift 26s ease-in-out infinite alternate}
+        .farewell-experience::after{z-index:0;content:'';position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:radial-gradient(rgba(255,229,197,.42) .6px,transparent .8px);background-size:4px 4px;mask-image:linear-gradient(transparent,#000 18%,#000 82%,transparent)}
+        @keyframes ambientDrift{0%{transform:translate3d(-1.5%,0,0) scale(1);background-position:0% 0%}100%{transform:translate3d(1.5%,1%,0) scale(1.04);background-position:100% 100%}}
+        .farewell-fireflies{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+        .farewell-fireflies i{--x:50%;--y:75%;--drift:12px;--time:28s;--delay:0s;position:absolute;left:var(--x);top:var(--y);width:3px;height:3px;border-radius:50%;background:#f0d2a4;box-shadow:0 0 9px 2px rgba(228,184,126,.28);opacity:0;animation:fireflyDrift var(--time) var(--delay) ease-in-out infinite}
+        .farewell-fireflies i:nth-child(1){--x:9%;--y:76%;--drift:15px;--time:31s;--delay:-8s}.farewell-fireflies i:nth-child(2){--x:22%;--y:37%;--drift:-12px;--time:36s;--delay:-21s}.farewell-fireflies i:nth-child(3){--x:36%;--y:84%;--drift:10px;--time:28s;--delay:-14s}.farewell-fireflies i:nth-child(4){--x:49%;--y:24%;--drift:-16px;--time:39s;--delay:-5s}.farewell-fireflies i:nth-child(5){--x:63%;--y:71%;--drift:14px;--time:34s;--delay:-26s}.farewell-fireflies i:nth-child(6){--x:76%;--y:43%;--drift:-10px;--time:29s;--delay:-17s}.farewell-fireflies i:nth-child(7){--x:91%;--y:81%;--drift:13px;--time:37s;--delay:-11s}.farewell-fireflies i:nth-child(8){--x:84%;--y:18%;--drift:-14px;--time:33s;--delay:-23s}.farewell-fireflies i:nth-child(9){--x:15%;--y:17%;--drift:11px;--time:35s;--delay:-30s}
+        @keyframes fireflyDrift{0%,100%{opacity:0;transform:translate3d(0,18px,0) scale(.7)}18%,75%{opacity:.42}50%{opacity:.68;transform:translate3d(var(--drift),-22px,0) scale(1.15)}}
+        .farewell-experience.is-open{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+        .farewell-shell{z-index:1;min-height:100%;max-width:1160px;padding:24px clamp(20px,5vw,64px) 30px;margin:auto;display:flex;flex-direction:column;position:relative}
+        .farewell-header{display:flex;align-items:center;justify-content:space-between;min-height:44px}.farewell-mark{color:#c5b7a5;text-transform:uppercase;font:500 .65rem 'Inter',sans-serif;letter-spacing:.22em}.farewell-mark span{color:var(--gold);margin-right:9px}
+        .farewell-close{width:42px;height:42px;border-radius:50%;border:1px solid rgba(224,227,225,.18);color:#e8e8e3;background:rgba(255,255,255,.035);font:300 1.8rem/1 'Inter',sans-serif;cursor:pointer;transition:background .25s,transform .25s}.farewell-close:hover{background:rgba(255,255,255,.11);transform:rotate(90deg)}
+        .farewell-progress{height:2px;background:rgba(255,255,255,.12);margin:18px 0 0}.farewell-progress span{display:block;height:100%;width:11.11%;background:linear-gradient(90deg,#8faaa9,#d4b98d);transition:width .5s cubic-bezier(.2,.7,.2,1)}
+        .farewell-counter{padding-top:22px;color:var(--gold);font:500 .66rem 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase}.farewell-stage{flex:1;display:grid;place-items:center;min-height:0;padding:20px 0 24px}
+        .farewell-scene{position:relative;width:min(100%,850px);min-height:min(59vh,570px);display:flex;flex-direction:column;justify-content:center;padding:clamp(32px,7vw,78px) clamp(25px,8vw,96px);border:1px solid rgba(224,220,205,.13);background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.015));box-shadow:0 28px 80px rgba(0,0,0,.22);overflow:hidden;animation:sceneIn .55s cubic-bezier(.2,.7,.2,1) both}
+        .farewell-scene::after{content:'';position:absolute;width:300px;height:300px;border-radius:50%;right:-170px;top:-190px;background:radial-gradient(circle,rgba(184,164,135,.12),transparent 70%);pointer-events:none}
+        .farewell-scene[data-scene="1"]{text-align:center;align-items:center;background:radial-gradient(ellipse at 50% 45%,rgba(195,137,103,.13),transparent 62%),rgba(255,255,255,.015)}.farewell-scene[data-scene="1"] .farewell-copy{max-width:610px;font:400 clamp(1.45rem,3.5vw,2.25rem)/1.72 'Cormorant Garamond',serif}
+        .farewell-scene[data-scene="2"]{border-left:2px solid rgba(195,174,139,.45)}.farewell-scene[data-scene="2"]::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(transparent,rgba(195,174,139,.48),transparent)}
+        .farewell-scene[data-scene="3"]{background:radial-gradient(ellipse at 78% 28%,rgba(194,177,147,.13),transparent 25%),radial-gradient(ellipse at 22% 76%,rgba(151,119,116,.1),transparent 28%),rgba(255,255,255,.018)}.farewell-scene[data-scene="3"]::before{content:'·  ·  ·';position:absolute;right:11%;top:18%;color:rgba(221,202,164,.5);letter-spacing:1.2em;font-size:1.4rem}
+        .farewell-scene[data-scene="4"]{background:linear-gradient(115deg,rgba(211,190,162,.055),rgba(255,255,255,.015));border-color:rgba(211,190,162,.22)}.farewell-scene[data-scene="4"] .farewell-copy{font-family:'Cormorant Garamond',serif;color:#e5ddd1}
+        .farewell-scene[data-scene="5"]{background:radial-gradient(ellipse at 15% 85%,rgba(179,127,82,.11),transparent 38%),rgba(255,255,255,.018)}.farewell-scene[data-scene="6"]{background:radial-gradient(ellipse at 80% 20%,rgba(210,189,145,.12),transparent 42%),rgba(255,255,255,.018)}.farewell-scene[data-scene="7"]{background:linear-gradient(145deg,rgba(124,161,151,.065),rgba(255,255,255,.015))}
+        .farewell-scene[data-scene="8"]{text-align:center;align-items:center;background:radial-gradient(ellipse at 50% 50%,rgba(127,145,153,.11),transparent 62%),rgba(255,255,255,.018)}.farewell-scene[data-scene="8"] .farewell-copy{max-width:660px;font:400 clamp(1.25rem,3vw,1.7rem)/1.85 'Cormorant Garamond',serif}
+        .farewell-scene[data-scene="9"]{min-height:min(63vh,620px);text-align:center;align-items:center;border-color:rgba(205,183,145,.27);background:radial-gradient(ellipse at 50% 46%,rgba(161,142,114,.13),transparent 60%),rgba(255,255,255,.018)}.farewell-scene[data-scene="9"] .farewell-copy{text-align:left}
+        .farewell-chapter-label{color:var(--gold);font:500 .65rem 'Inter',sans-serif;letter-spacing:.24em;text-transform:uppercase;margin-bottom:22px}.farewell-scene h2{margin:0 0 30px;color:#f1ece4;font:400 clamp(2.5rem,7vw,5.2rem)/1.03 'Cormorant Garamond',serif;letter-spacing:-.025em}
+        .farewell-copy{width:100%;max-width:720px;color:#cdd0cd;font:300 clamp(.98rem,1.6vw,1.12rem)/1.95 'Inter',sans-serif}.farewell-copy p{margin:0 0 1.15em}.farewell-copy p:last-child{margin-bottom:0}
+        .farewell-final-line{margin-top:36px!important;color:#e5d4bb;font:400 clamp(1.8rem,5vw,3.1rem)/1.15 'Cormorant Garamond',serif!important}.farewell-final-note{margin-top:18px!important;color:#bab7ad;font:300 .78rem/1.7 'Inter',sans-serif!important;letter-spacing:.035em}
+        @keyframes sceneIn{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:translateX(0)}}
+        .farewell-nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px}.farewell-nav-button{min-height:46px;display:inline-flex;align-items:center;gap:9px;justify-self:start;padding:0 17px;border:1px solid rgba(225,228,225,.17);border-radius:999px;color:#c7cac7;background:rgba(255,255,255,.025);font:400 .76rem 'Inter',sans-serif;cursor:pointer;transition:background .25s,border-color .25s,color .25s}.farewell-nav-button:hover:not(:disabled){color:#fff;background:rgba(255,255,255,.085);border-color:rgba(225,228,225,.36)}.farewell-nav-button:disabled{opacity:.35;cursor:default}.farewell-nav-button.primary{justify-self:end;color:#181a19;background:#d0bd9b;border-color:#d0bd9b}.farewell-nav-button.primary:hover{background:#e3d1b1}
+        .farewell-dots{display:flex;gap:7px}.farewell-dots span{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.24);transition:background .3s,transform .3s}.farewell-dots span.active{background:#d4bd96;transform:scale(1.45)}.farewell-key-hint{text-align:center;margin:16px 0 0;color:rgba(211,215,211,.4);font:400 .62rem 'Inter',sans-serif;letter-spacing:.07em}
+        .farewell-experience button:focus-visible,.farewell-trigger:focus-visible{outline:2px solid #dfc99f;outline-offset:4px}
+        @media(max-width:640px){.farewell-shell{min-height:100svh;padding:14px 18px 20px}.farewell-header{min-height:42px}.farewell-progress{margin-top:12px}.farewell-counter{padding-top:17px}.farewell-stage{padding:16px 0}.farewell-scene,.farewell-scene[data-scene="9"]{min-height:55svh;padding:34px 24px}.farewell-scene h2{margin-bottom:23px;font-size:clamp(2.35rem,11vw,3.4rem)}.farewell-copy{font-size:.96rem;line-height:1.8}.farewell-scene[data-scene="1"] .farewell-copy{font-size:1.35rem}.farewell-scene[data-scene="8"] .farewell-copy{font-size:1.16rem}.farewell-nav{gap:8px}.farewell-nav-button{min-height:44px;padding:0 13px;font-size:.7rem}.farewell-dots{gap:5px}.farewell-dots span{width:4px;height:4px}.farewell-key-hint{margin-top:12px}.farewell-transition{margin-top:56px;padding:32px 15px 0}.farewell-trigger{padding:0 20px;letter-spacing:.035em}}
+        @media(prefers-reduced-motion:reduce){.farewell-fireflies i{animation:none!important;opacity:.1}.farewell-experience::before{animation:none!important}.farewell-experience,.farewell-progress span,.farewell-nav-button,.farewell-trigger,.farewell-close{transition:none!important}.farewell-transition,.farewell-scene{animation:none!important}}
+
     </style>
 </head>
 
@@ -1361,6 +1400,11 @@
                         Tu compa pesito ❤️
                     </div>
 
+                    <div class="farewell-transition">
+                        <p>Y antes de terminar, hay algo más que quiero compartir contigo...</p>
+                        <button id="openFarewell" class="farewell-trigger" type="button"><span aria-hidden="true">✉</span> Hay algo más que quiero decirte</button>
+                    </div>
+
                 </div>
 
             </div>
@@ -1381,6 +1425,17 @@
 
 
     </main>
+
+        <section id="farewellExperience" class="farewell-experience" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Segunda carta: despedida">
+            <div class="farewell-fireflies" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="farewell-shell">
+                <header class="farewell-header"><div class="farewell-mark"><span aria-hidden="true">✦</span> Una carta para ti</div><button class="farewell-close" id="closeFarewell" type="button" aria-label="Cerrar la carta">×</button></header>
+                <div class="farewell-progress" role="progressbar" aria-label="Progreso de lectura" aria-valuemin="1" aria-valuemax="9" aria-valuenow="1"><span id="farewellProgress"></span></div>
+                <div class="farewell-counter" id="farewellCounter" aria-live="polite"></div><div class="farewell-stage" id="farewellStage" aria-live="polite"></div>
+                <nav class="farewell-nav" aria-label="Navegación de la carta"><button id="farewellPrevious" class="farewell-nav-button" type="button">← <span>Anterior</span></button><div class="farewell-dots" id="farewellDots" aria-hidden="true"></div><button id="farewellNext" class="farewell-nav-button primary" type="button"><span>Continuar</span> <span aria-hidden="true">→</span></button></nav>
+                <p class="farewell-key-hint">También puedes usar las flechas del teclado</p>
+            </div>
+        </section>
 
 
 
@@ -1696,7 +1751,221 @@
         });
 
 
+    
+        /* NAVEGACIÓN DE LA SEGUNDA CARTA */
+        const farewellScenes = [{"title":"Aunque no lo parezca","label":"Lo que todavía siento","paragraphs":["La verdad, te voy a extrañar muchísimo. No quiero que pienses que porque quizás me ves más tranquilo significa que no me duele que te vayas o que no me importa. Claro que me importa, y mucho."]},{"title":"Lo que vivimos","label":"Mirar con honestidad","paragraphs":["Pero también pienso que, al fin y al cabo, todos los errores del pasado, las peleas y las cosas que hemos vivido nos han afectado bastante como pareja. Siento que son cosas que, por más que intentemos, no nos han permitido estar bien del todo y que, en este momento, tampoco nos van a permitir seguir juntos de una manera sana. Por eso, la verdad, estoy de acuerdo con que no continuemos la relación."]},{"title":"Si es para uno...","label":"Los caminos que se cruzan","paragraphs":["Y como tú misma me has dicho, si es para uno, es para uno. Entonces, si en algún momento de la vida estamos destinados a encontrarnos nuevamente, pues así será. Quizás en otro momento, con otras experiencias, habiendo aprendido de nuestros errores y siendo mejores personas."]},{"title":"Prefiero quedarme con lo bonito","label":"Una despedida desde el cariño","paragraphs":["También quiero decirte que había algunas cosas que tenía ganas de hablar contigo, cosas que quizás quería decirte para desahogarme y expresar cómo me había sentido con ciertas situaciones. Pero, sinceramente, después de hablar contigo, de reflexionar y de pensar en todo lo que está pasando, ya no siento que sea necesario. No quiero que nuestra despedida se convierta en una conversación sobre los problemas que tuvimos o en una oportunidad para volver a sacar cosas del pasado. Prefiero quedarme con las cosas buenas, que tú también te lleves una buena imagen de mí y que recuerdes que, a pesar de todo, te amo muchísimo."]},{"title":"Nuestros últimos días","label":"Recuerdos que abrigan","paragraphs":["También quiero que sepas que disfruté mucho estas últimas semanas contigo. De verdad me gustó que pudiéramos compartir, hacer cosas juntos, pasar tiempo y disfrutar de lo que nos quedaba. Me alegra que hayamos podido vivir esos momentos y espero que tú también te lleves recuerdos bonitos de estos últimos días."]},{"title":"Todo lo que deseo para ti","label":"Una nueva etapa","paragraphs":["Por ahora, quiero que sigas con tu vida, que trabajes mucho, que hagas muchísima plata, que cumplas todos tus sueños y que puedas comprarte todo eso que siempre has querido tener. Que tengas muchas oportunidades, que disfrutes esta nueva etapa y que te vaya increíble en todo lo que te propongas."]},{"title":"Ahora también me toca a mí","label":"Volver a construir","paragraphs":["Por mi parte, también voy a hacer lo que te dije y lo que tú misma me has aconsejado: enfocarme en mis cosas, trabajar, estudiar, retomar mis hábitos y seguir construyendo mi futuro."]},{"title":"Siempre serás parte de mi historia","label":"Lo que permanece","paragraphs":["Y quiero que sepas que tú fuiste, y sigues siendo, una persona demasiado importante para mí. No quiero que pienses que simplemente vas a irte y que con el tiempo voy a olvidarme de ti como si nunca hubieras formado parte de mi vida. Sé que no va a ser así. Siempre voy a tenerte presente, voy a recordar lo que vivimos y todo lo que significaste para mí. De una u otra manera, siempre vas a formar parte de mi historia."]},{"title":"Hasta que la vida nos vuelva a encontrar","label":"Con todo mi cariño","paragraphs":["Te amo muchísimo y de verdad espero que te vaya muy bien por allá. No quiero que estés triste, quiero que disfrutes, que seas feliz, que compartas mucho con tu mamá y con tu hermano, que aproveches el tiempo con ellos y que puedas construir una vida bonita allá.","Te deseo muchísimos éxitos, de corazón. Espero que consigas todo lo que quieres y que la vida te dé muchas cosas buenas. Y aunque ahora nos toque tomar caminos diferentes, espero que algún día podamos encontrarnos nuevamente, quizás en otras circunstancias y en otro momento de nuestras vidas.","Quiero que te vayas sabiendo que te quise muchísimo, que fuiste muy importante para mí, que disfruté mucho el tiempo que compartimos y que, por encima de cualquier problema que hayamos tenido, genuinamente quiero verte bien y quiero que seas feliz."]}];
+        const farewellExperience = document.getElementById('farewellExperience');
+        const farewellStage = document.getElementById('farewellStage');
+        const farewellCounter = document.getElementById('farewellCounter');
+        const farewellProgress = document.getElementById('farewellProgress');
+        const farewellProgressBar = document.querySelector('.farewell-progress');
+        const farewellDots = document.getElementById('farewellDots');
+        const farewellPrevious = document.getElementById('farewellPrevious');
+        const farewellNext = document.getElementById('farewellNext');
+        const openFarewellButton = document.getElementById('openFarewell');
+        const closeFarewellButton = document.getElementById('closeFarewell');
+        let farewellIndex = 0;
+        let farewellIsOpen = false;
+        let farewellTouchStartX = null;
+
+        function renderFarewellScene() {
+            const scene = farewellScenes[farewellIndex];
+            const article = document.createElement('article');
+            article.className = 'farewell-scene';
+            article.dataset.scene = String(farewellIndex + 1);
+            article.setAttribute('aria-labelledby', 'farewellSceneTitle');
+            const label = document.createElement('div');
+            label.className = 'farewell-chapter-label';
+            label.textContent = scene.label;
+            const heading = document.createElement('h2');
+            heading.id = 'farewellSceneTitle'; heading.tabIndex = -1; heading.textContent = scene.title;
+            const copy = document.createElement('div'); copy.className = 'farewell-copy';
+            scene.paragraphs.forEach(text => { const paragraph = document.createElement('p'); paragraph.textContent = text; copy.appendChild(paragraph); });
+            article.append(label, heading, copy);
+            if (farewellIndex === farewellScenes.length - 1) {
+                const finalLine = document.createElement('p'); finalLine.className = 'farewell-final-line'; finalLine.textContent = 'Siempre voy a querer que seas feliz.';
+                const finalNote = document.createElement('p'); finalNote.className = 'farewell-final-note'; finalNote.textContent = 'Con mucho cariño, para alguien que siempre será parte de mi historia.';
+                article.append(finalLine, finalNote);
+            }
+            farewellStage.replaceChildren(article);
+            farewellCounter.textContent = 'Capítulo ' + String(farewellIndex + 1).padStart(2, '0') + ' / 09';
+            farewellProgress.style.width = ((farewellIndex + 1) / farewellScenes.length * 100) + '%';
+            farewellProgressBar.setAttribute('aria-valuenow', String(farewellIndex + 1));
+            farewellDots.replaceChildren(...farewellScenes.map((_, index) => { const dot = document.createElement('span'); if (index === farewellIndex) dot.classList.add('active'); return dot; }));
+            farewellPrevious.disabled = farewellIndex === 0;
+            farewellNext.innerHTML = farewellIndex === farewellScenes.length - 1 ? '<span>Volver al inicio</span> <span aria-hidden="true">↗</span>' : '<span>Continuar</span> <span aria-hidden="true">→</span>';
+            farewellNext.setAttribute('aria-label', farewellIndex === farewellScenes.length - 1 ? 'Volver al inicio' : 'Continuar al siguiente capítulo');
+        }
+        function openFarewell() {
+            if (farewellIsOpen) return;
+            farewellIsOpen = true; farewellIndex = 0; renderFarewellScene();
+            farewellExperience.classList.add('is-open'); farewellExperience.setAttribute('aria-hidden', 'false');
+            mainContent.inert = true; document.body.style.overflow = 'hidden'; closeFarewellButton.focus();
+        }
+        function closeFarewell() {
+            if (!farewellIsOpen) return;
+            farewellIsOpen = false; farewellExperience.classList.remove('is-open'); farewellExperience.setAttribute('aria-hidden', 'true');
+            mainContent.inert = false; document.body.style.overflow = ''; openFarewellButton.focus({ preventScroll: true });
+        }
+        function moveFarewell(direction) {
+            const nextIndex = farewellIndex + direction;
+            if (nextIndex < 0 || nextIndex >= farewellScenes.length) return;
+            farewellIndex = nextIndex; renderFarewellScene();
+            farewellExperience.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+            document.getElementById('farewellSceneTitle').focus({ preventScroll: true });
+        }
+        openFarewellButton.addEventListener('click', openFarewell);
+        closeFarewellButton.addEventListener('click', closeFarewell);
+        farewellPrevious.addEventListener('click', () => moveFarewell(-1));
+        farewellNext.addEventListener('click', () => farewellIndex === farewellScenes.length - 1 ? closeFarewell() : moveFarewell(1));
+        farewellExperience.addEventListener('keydown', event => {
+            if (event.key === 'Escape') { event.preventDefault(); closeFarewell(); }
+            if (event.key === 'ArrowLeft') { event.preventDefault(); moveFarewell(-1); }
+            if (event.key === 'ArrowRight') { event.preventDefault(); farewellIndex === farewellScenes.length - 1 ? closeFarewell() : moveFarewell(1); }
+        });
+        farewellExperience.addEventListener('touchstart', event => { farewellTouchStartX = event.changedTouches[0].clientX; }, { passive: true });
+        farewellExperience.addEventListener('touchend', event => {
+            if (farewellTouchStartX === null) return;
+            const distance = event.changedTouches[0].clientX - farewellTouchStartX; farewellTouchStartX = null;
+            if (Math.abs(distance) < 60) return;
+            if (distance < 0 && farewellIndex < farewellScenes.length - 1) moveFarewell(1);
+            if (distance > 0 && farewellIndex > 0) moveFarewell(-1);
+        }, { passive: true });
+
     </script>
+
+    <!--
+  PEGA TODO ESTE BLOQUE EN TU index.html, justo ANTES de </body>
+  (después de tu <script> actual). No borres nada de lo anterior.
+-->
+<style>
+/* ===== Segunda carta · mejora visual ===== */
+.farewell-experience{background:radial-gradient(ellipse at var(--mx,50%) var(--my,40%),rgba(222,166,124,.17),transparent 36%),radial-gradient(ellipse at 90% 90%,rgba(120,70,100,.3),transparent 45%),linear-gradient(140deg,#150f17,#24161c 50%,#14120f)}
+.fw-blob{position:absolute;width:46vmax;height:46vmax;border-radius:50%;filter:blur(70px);opacity:.28;animation:fwBlob 22s ease-in-out infinite alternate}
+.fw-blob.a{left:-14vmax;top:-10vmax;background:#b9667a}
+.fw-blob.b{right:-16vmax;bottom:-14vmax;background:#c89a5c;animation-delay:-9s}
+@keyframes fwBlob{to{transform:translate3d(8vmax,6vmax,0) scale(1.15)}}
+.fw-petal{position:absolute;top:-6vh;left:var(--x);width:var(--s);height:calc(var(--s)*1.3);background:radial-gradient(circle at 30% 30%,#ffe0d8,#d98a94);border-radius:80% 0 80% 0;opacity:0;animation:fwFall var(--t) var(--d) linear infinite}
+@keyframes fwFall{0%{opacity:0;transform:translate3d(0,0,0) rotate(0)}10%{opacity:.65}50%{transform:translate3d(46px,55vh,0) rotate(200deg)}100%{opacity:0;transform:translate3d(-34px,112vh,0) rotate(420deg)}}
+.farewell-experience:not(.is-open) .fw-petal,.farewell-experience:not(.is-open) .fw-blob{animation-play-state:paused}
+
+.farewell-experience .farewell-scene{--ac:#e0b48a;border:1px solid color-mix(in srgb,var(--ac) 38%,transparent);border-radius:30px;background:linear-gradient(160deg,rgba(255,244,230,.1),rgba(255,255,255,.02));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 30px 90px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.14);animation:fwIn .9s cubic-bezier(.2,.8,.2,1) both}
+.farewell-experience .farewell-scene.back{animation-name:fwInBack}
+.farewell-experience .farewell-scene[data-scene="1"]{--ac:#efb5a2}.farewell-experience .farewell-scene[data-scene="2"]{--ac:#c9a98a}.farewell-experience .farewell-scene[data-scene="3"]{--ac:#b9b3e0}
+.farewell-experience .farewell-scene[data-scene="4"]{--ac:#f0c98e}.farewell-experience .farewell-scene[data-scene="5"]{--ac:#f2a7b4}.farewell-experience .farewell-scene[data-scene="6"]{--ac:#e8d27f}
+.farewell-experience .farewell-scene[data-scene="7"]{--ac:#8fd0b8}.farewell-experience .farewell-scene[data-scene="8"]{--ac:#9cc3e8}.farewell-experience .farewell-scene[data-scene="9"]{--ac:#f4c3a0}
+.farewell-experience .farewell-scene[data-scene]::before{content:none}
+.farewell-experience .farewell-scene[data-scene]::after{content:'';position:absolute;width:360px;height:360px;right:-130px;top:-150px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--ac) 32%,transparent),transparent 70%);animation:fwPulse 7s ease-in-out infinite;pointer-events:none}
+.farewell-experience .farewell-scene>:not(.fw-num){position:relative;z-index:1}
+@keyframes fwIn{from{opacity:0;transform:translateX(44px) scale(.97);filter:blur(10px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes fwInBack{from{opacity:0;transform:translateX(-44px) scale(.97);filter:blur(10px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes fwPulse{50%{transform:scale(1.25);opacity:.7}}
+.fw-num{position:absolute;right:20px;bottom:-34px;font:600 clamp(9rem,28vw,17rem)/1 'Cormorant Garamond',serif;color:var(--ac);opacity:.09;pointer-events:none;user-select:none;z-index:0}
+.fw-icon{display:inline-block;font-size:2.3rem;margin-bottom:14px;filter:drop-shadow(0 0 14px var(--ac));animation:fwFloat 4.5s ease-in-out infinite}
+@keyframes fwFloat{50%{transform:translateY(-9px) rotate(6deg)}}
+.farewell-experience .farewell-chapter-label{color:var(--ac);display:flex;align-items:center;gap:14px}
+.farewell-experience .farewell-chapter-label::before,.farewell-experience .farewell-chapter-label::after{content:'';height:1px;width:34px;background:linear-gradient(90deg,transparent,var(--ac))}
+.farewell-experience .farewell-chapter-label::after{transform:scaleX(-1)}
+.farewell-experience .farewell-scene h2{background:linear-gradient(90deg,#f7ead8,var(--ac),#f7ead8);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:fwShine 7s linear infinite}
+@keyframes fwShine{to{background-position:200% center}}
+.fw-rule{height:1px;width:0;margin:0 0 28px;background:linear-gradient(90deg,var(--ac),transparent);animation:fwRule 1.2s .4s ease forwards}
+.farewell-scene[data-scene="1"] .fw-rule,.farewell-scene[data-scene="8"] .fw-rule,.farewell-scene[data-scene="9"] .fw-rule{background:linear-gradient(90deg,transparent,var(--ac),transparent)}
+@keyframes fwRule{to{width:min(160px,40%)}}
+.farewell-experience .farewell-copy{color:#e9e2d9}
+.fw-w{display:inline-block;opacity:0;filter:blur(8px);transform:translateY(10px);animation:fwWord .7s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i)*24ms + .45s)}
+@keyframes fwWord{to{opacity:1;filter:blur(0);transform:none}}
+.farewell-experience .farewell-final-line{color:var(--ac)!important;text-shadow:0 0 30px color-mix(in srgb,var(--ac) 55%,transparent)}
+.fw-spark{position:absolute;left:50%;top:60%;width:6px;height:6px;border-radius:50%;background:var(--ac);box-shadow:0 0 10px var(--ac);opacity:0;animation:fwSpark 2.4s var(--dl) ease-out forwards;z-index:2}
+@keyframes fwSpark{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.2)}}
+
+.farewell-progress{height:3px;border-radius:3px;overflow:visible}
+.farewell-progress span{position:relative;border-radius:3px;box-shadow:0 0 14px rgba(212,185,141,.7)}
+.farewell-progress span::after{content:'♥';position:absolute;right:-9px;top:-10px;font-size:15px;color:#f2a7b4;animation:fwBeat 1.4s infinite}
+@keyframes fwBeat{0%,100%{transform:scale(1)}15%{transform:scale(1.35)}30%{transform:scale(1)}}
+.farewell-dots span{transition:all .4s}
+.farewell-dots span.active{width:22px;border-radius:9px;transform:none;box-shadow:0 0 10px rgba(212,189,150,.6)}
+.farewell-nav-button.primary{background:linear-gradient(135deg,#e6cfa6,#d2a98a);border:0;box-shadow:0 8px 26px rgba(214,170,120,.28)}
+.farewell-nav-button.primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(214,170,120,.42)}
+@media(prefers-reduced-motion:reduce){.fw-w{animation:none;opacity:1;filter:none;transform:none}.fw-petal,.fw-blob,.fw-icon,.fw-spark,.farewell-experience .farewell-scene h2{animation:none!important}.fw-rule{animation:none;width:120px}}
+
+/* Rendimiento: conservar la atmósfera y evitar repintados y zoom */
+.farewell-experience::before{animation:none!important}
+.fw-blob{width:34vmax;height:34vmax;filter:none!important;opacity:.2;background:radial-gradient(circle,rgba(190,111,124,.5),rgba(190,111,124,.12) 38%,transparent 72%);animation:fwBlob 42s ease-in-out infinite alternate}
+.fw-blob.b{background:radial-gradient(circle,rgba(200,154,92,.42),rgba(200,154,92,.1) 38%,transparent 72%)}
+@keyframes fwBlob{to{transform:translate3d(4vmax,3vmax,0)}}
+.fw-petal{filter:none!important}
+.farewell-experience .farewell-scene{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.farewell-experience .farewell-scene::after{animation:none!important;opacity:.5}
+.farewell-experience .farewell-scene h2{animation:none!important;background-size:100% auto}
+.farewell-experience .fw-w{filter:none!important}
+@keyframes fwIn{from{opacity:0;transform:translateX(22px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fwInBack{from{opacity:0;transform:translateX(-22px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fwPulse{50%{opacity:.6}}
+@media(prefers-reduced-motion:reduce){.fw-blob,.fw-petal{animation:none!important;opacity:.12}.farewell-experience .farewell-scene{animation:none!important}}
+</style>
+
+<script>
+(function () {
+    const fx = document.querySelector('.farewell-fireflies');
+    for (let i = 0; i < 9; i++) {
+        const p = document.createElement('b');
+        p.className = 'fw-petal';
+        p.style.cssText = `--x:${Math.random() * 100}%;--s:${8 + Math.random() * 10}px;--t:${14 + Math.random() * 14}s;--d:${-Math.random() * 24}s`;
+        fx.appendChild(p);
+    }
+    ['a', 'b'].forEach(c => { const b = document.createElement('div'); b.className = 'fw-blob ' + c; fx.appendChild(b); });
+
+    const icons = ['🕯️', '🌿', '🌠', '🌸', '🎞️', '🌅', '🍃', '📖', '🕊️'];
+    let dir = 1;
+    const originalMove = moveFarewell;
+    moveFarewell = function (d) { dir = d; originalMove(d); };
+
+    renderFarewellScene = function () {
+        const scene = farewellScenes[farewellIndex];
+        const last = farewellIndex === farewellScenes.length - 1;
+        const article = document.createElement('article');
+        article.className = 'farewell-scene' + (dir < 0 ? ' back' : '');
+        article.dataset.scene = String(farewellIndex + 1);
+        article.setAttribute('aria-labelledby', 'farewellSceneTitle');
+
+        const num = document.createElement('div'); num.className = 'fw-num'; num.setAttribute('aria-hidden', 'true'); num.textContent = String(farewellIndex + 1).padStart(2, '0');
+        const icon = document.createElement('div'); icon.className = 'fw-icon'; icon.setAttribute('aria-hidden', 'true'); icon.textContent = icons[farewellIndex];
+        const label = document.createElement('div'); label.className = 'farewell-chapter-label'; label.textContent = scene.label;
+        const heading = document.createElement('h2'); heading.id = 'farewellSceneTitle'; heading.tabIndex = -1; heading.textContent = scene.title;
+        const rule = document.createElement('div'); rule.className = 'fw-rule';
+
+        let n = 0;
+        const addWords = (el, text) => text.split(' ').forEach(w => {
+            const s = document.createElement('span'); s.className = 'fw-w';
+            s.style.setProperty('--i', Math.min(n++, 220)); s.textContent = w; el.append(s, ' ');
+        });
+        const copy = document.createElement('div'); copy.className = 'farewell-copy';
+        scene.paragraphs.forEach(t => { const p = document.createElement('p'); addWords(p, t); copy.appendChild(p); });
+        article.append(num, icon, label, heading, rule, copy);
+
+        if (last) {
+            const fl = document.createElement('p'); fl.className = 'farewell-final-line'; addWords(fl, 'Siempre voy a querer que seas feliz.');
+            const fn = document.createElement('p'); fn.className = 'farewell-final-note'; addWords(fn, 'Con mucho cariño, para alguien que siempre será parte de mi historia.');
+            article.append(fl, fn);
+            for (let i = 0; i < 30; i++) {
+                const s = document.createElement('i'); s.className = 'fw-spark';
+                const a = Math.random() * Math.PI * 2, r = 80 + Math.random() * 260;
+                s.style.cssText = `--dx:${Math.cos(a) * r}px;--dy:${Math.sin(a) * r - 60}px;--dl:${(n * 0.024 + 0.5 + Math.random() * 0.6).toFixed(2)}s`;
+                article.appendChild(s);
+            }
+        }
+
+        farewellStage.replaceChildren(article);
+        farewellCounter.textContent = 'Capítulo ' + String(farewellIndex + 1).padStart(2, '0') + ' / 09';
+        farewellProgress.style.width = ((farewellIndex + 1) / farewellScenes.length * 100) + '%';
+        farewellProgressBar.setAttribute('aria-valuenow', String(farewellIndex + 1));
+        farewellDots.replaceChildren(...farewellScenes.map((_, i) => { const d = document.createElement('span'); if (i === farewellIndex) d.classList.add('active'); return d; }));
+        farewellPrevious.disabled = farewellIndex === 0;
+        farewellNext.innerHTML = last ? '<span>Volver al inicio</span> <span aria-hidden="true">↗</span>' : '<span>Continuar</span> <span aria-hidden="true">→</span>';
+        farewellNext.setAttribute('aria-label', last ? 'Volver al inicio' : 'Continuar al siguiente capítulo');
+    };
+})();
+</script>
 
 </body>
 
